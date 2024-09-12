@@ -1,6 +1,6 @@
-# DeIDClinic
+# Advanced De-identification of Clinical Texts using Large Language Models and Comprehensive Privacy Risk Assessment
 
-DeIDClinic is a tool designed for de-identifying clinical documents using state-of-the-art NLP models such as ClinicalBERT. This project allows you to train the model, analyze datasets, and deploy a web application for de-identification tasks.
+This is a tool designed for de-identifying clinical documents using state-of-the-art NLP models such as BioBERT. This project allows you to train the model, analyze datasets, and deploy a web application for de-identification tasks.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ DeIDClinic is a tool designed for de-identifying clinical documents using state-
 ## 1. Download the Project from GitHub
 
 1. **Clone the repository** or download the ZIP file from the following GitHub link:
-   - [GitHub Repository Link](https://github.com/angelpaulml17/DeIDClinic/tree/main)
+   - [GitHub Repository Link](https://github.com/DhivinShaji/Advanced-De-identification-of-Clinical-Texts-using-Large-Language-Models/tree/main)
 
 2. **Unzip the downloaded file**.
 
