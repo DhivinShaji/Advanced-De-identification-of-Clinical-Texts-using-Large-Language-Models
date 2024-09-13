@@ -109,3 +109,5 @@ The only folders/files changed/added to the older MASK version are:
 2. "ner_plugins"- "NER_BioBERT.py" file is added
 3. "Models"- Once the model is trained, the NER_BioBERT is saved in the Models file
 4. In the root folder 4 files were added, "extractcounts.py"(to analyse the entity distribution in the dataset), "name extraction.py"(extract all the names, locations and professions from the dataset to create base dictionaries), requirements.txt (to save all the required packages with their respective versions compatible with Python 3.7.9) and model_performance.py (to create heatmap on the entity level performance of multiple models)
+5. This project is built in collaboration with [DEIDClinic](https://github.com/angelpaulml17/DeIDClinic). It is built upon the [MASK_API_Copy
+Private](https://github.com/NCA-NHS-Foundation-Trust/MASK_API_Copy/tree/master?tab=readme-ov-file) project.
