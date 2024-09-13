@@ -1,70 +1,21 @@
-# Advanced De-identification of Clinical Texts using Large Language Models and Comprehensive Privacy Risk Assessment
+# Advanced De-identification of Clinical Texts using Large Language Models
 
-This is a tool designed for de-identifying clinical documents using state-of-the-art NLP models such as BioBERT. This project allows you to train the model, analyze datasets, and deploy a web application for de-identification tasks.
+## 📚 Overview
 
-## Table of Contents
+This project explores the use of Large Language Models (LLMs) for de-identifying clinical texts. The system anonymizes personally identifiable information (PII) in medical records by leveraging advanced transformer-based models (e.g., BioBERT) alongside rule-based techniques to enhance the accuracy of the de-identification process.
 
-1. [Download the Project from GitHub](#1-download-the-project-from-github)
-2. [Setup Python Environment](#2-setup-python-environment)
-3. [Dataset Preparation](#3-dataset-preparation)
-4. [Model Training](#4-model-training)
-5. [Running the Website](#5-running-the-website)
+## Features
 
-## 1. Download the Project from GitHub
+- **Transformer-Based Models**: Uses state-of-the-art LLMs like BioBERT for effective entity recognition.
+- **Rule-Based De-identification**: Incorporates rule-based approaches for improved recall.
+- **Custom De-identification**: Provides options for either redaction or replacement of sensitive data.
+- **Risk Assessment**: Evaluates the re-identification risk after de-identification based on the uniqueness of entities.
 
-1. **Clone the repository** or download the ZIP file from the following GitHub link:
-   - [GitHub Repository Link](https://github.com/DhivinShaji/Advanced-De-identification-of-Clinical-Texts-using-Large-Language-Models/tree/main)
-
-2. **Unzip the downloaded file**.
-
-## 2. Setup Python Environment
-
-### 2.1 Python Installation
-
-1. Download and install Python 3.7.9 from the official Python website:
-   - [Download Python 3.7.9](https://www.python.org/downloads/release/python-379/)
-   - Choose the appropriate installer for your operating system (Windows or macOS).
-   - Note the installation path.
-
-2. **Open the project folder** in your preferred code editor (e.g., Visual Studio Code).
-
-   **NOTE**: The following commands are applicable only on Windows systems.
-   
-4. **Navigate to the project directory**:
-
-    ```bash
-    cd .\DeIDClinic-main\
-    ```
-
-5. **Create a virtual environment** for Python 3.7.9 using the following command:
-
-    ```bash
-    & "PATH TO PYTHON 3.7 .exe FILE" -m venv myenvpytest
-    ```
-
-    Replace `PATH TO PYTHON 3.7 .exe FILE` with the actual path to `python.exe` where Python 3.7 was installed.
-
-6. **Activate the virtual environment** so that the code runs within it:
-
-    ```bash
-    .\myenvpytest\Scripts\Activate
-    ```
-
-7. **Install all required packages**:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-    The `requirements.txt` file contains all the required packages with versions to run the application seamlessly.
-
-
-
-## 3. Dataset Preparation
+## 🧠 Dataset Details
 
 The dataset used in this project is provided by the i2b2/UTHealth initiative and managed under the n2c2 challenges hosted by the Department of Biomedical Informatics at Harvard Medical School. Access to this dataset requires approval due to the sensitive nature of the data.
 
-### 3.1 Accessing the Dataset
+### Accessing the Dataset
 
 1. **Open the [N2C2 NLP portal](https://portal.dbmi.hms.harvard.edu/projects/n2c2-nlp/)**:
 
@@ -77,109 +28,84 @@ The dataset used in this project is provided by the i2b2/UTHealth initiative and
 
     - Copy the contents of `Training Data: PHI Gold Set 2` and paste them into `Training Data: PHI Gold Set 1`.
 
-3. **Copy the consolidated dataset** to the downloaded GitHub folder.
+3. **Copy the consolidated dataset** to `dataset and website\i2b2` in the downloaded GitHub folder.
 
+## 🔄 Reproducing the Experiments
 
-## 4. Model Training
+### Requirements
 
-### 4.1 Training on a Local Machine
+To reproduce the experiments, set up Google Colab with the following libraries:
 
-The model can be trained using the following hyperparameters:
+- `Flask`
+- `pandas`
+- `matplotlib`
+- `stanza`
+- `transformers`
+- `nltk`
+- `-g localtunnel`
+- `torch`
+- `scikit-learn`
+- `tensorflow`
+- `tensorflow_hub`
+- `sklearn_crfsuite`
+- `keras==2.6.0`
+- `keras_preprocessing`
+- `seqeval`
+- `ipykernel`
+- `Python 3.7`
 
-- Batch size: 32
-- Learning rate: 3e-5
-- Epochs: 15
+This project is intended to run in **Google Colab**, and it is pre-configured to work in that environment. 
+  
+### Model Training
 
-1. **To train the ClinicalBERT model**, run the following command:
-
-    ```bash
-    python train_framework.py --source_type i2b2 --source_location "[PATH TO THE DATASET]" --algorithm NER_ClinicalBERT --do_test yes --save_model yes --epochs 15
-    ```
-
-    Replace `"[PATH TO THE DATASET]"` with the actual path to the dataset (Training Data: PHI Gold Set 1).
-
-2. **Monitor the training** process. Once training is complete, the model will be saved.
-
-### 4.2 Training on Google Colab
-
-Alternatively, the model can be trained on Google Colab with GPU for faster training (T4).
-
-1. **Upload the folder** on Google Drive.
-2. **Open a new Google Colab Python notebook**.
-3. **Mount the drive** using the following command:
-
-    ```python
-    from google.colab import drive
-    drive.mount('/content/drive')
-    ```
-
-4. **Navigate to the project directory**:
-
-    ```bash
-    %cd “[PATH TO PROJECT ON GOOGLE DRIVE]”
-    ```
-
-5. **Run the following commands** to create the Python 3.7 virtual environment and install the required packages:
+1. Clone this repository in Google Colab.
+   ```bash
+   git clone https://github.com/DhivinShaji/Advanced-De-identification-of-Clinical-Texts-using-Large-Language-Models.git
+   ```
+   
+2. Navigate to the project directory.
 
     ```bash
-    !apt-get update –y
-    !apt-get install python3.7 python3.7-venv python3.7-dev -y
-    !apt-get install python3-pip –y
-    !python3.7 -m ensurepip --upgrade
-    !python3.7 -m pip install --upgrade pip
-    !python3.7 -m pip install pipenv
-    !python3.7 -m pip install httplib2
-    !python3.7 -m pipenv install
-    !python3.7 -m pipenv run pip install keras==2.6.0
-    !pipenv run pip install pandas
-    !pipenv run pip install spacy
-    !pipenv run pip install medcat
-    !pip install scikit-learn
-    !pip install nltk
-    !pip install tensorflow_hub
-    !pip install tensorflow
-    !pip install transformers
-    !pip install sklearn_crfsuite
-    !pipenv install flask
-    !pipenv shell
+    cd .\Advanced-De-identification-of-Clinical-Texts-using-Large-Language-Models
     ```
-
     
+2. Open the `training_biobert.ipynb` notebook in Google Colab.
 
-6. **Train the model** using the below command:
+3. Ensure that the Colab runtime is set to Python 3.7.
 
-    ```bash
-    !pipenv run python3.7 train_framework.py --source_type i2b2 --source_location “[PATH TO THE DATASET]" --algorithm NER_ClinicalBERT --do_test yes --save_model yes --epochs 15
-    ```
+4. Execute the notebook cells to install dependencies and run the de-identification pipeline.
 
-7. **Once the training is complete**, the model will be saved in the `Models` folder with a `.pt` extension. 
 
-8. **Download the trained model** and place it under the `Models` folder on the local machine.
+### 📊 Running the Project
 
-## 5. Running the Website
+To run this project on **Google Colab**:
 
-1. **Navigate to the website directory**:
-
-    ```bash
-    cd '.\dataset and website\Website copy'
-    ```
-
-2. **Run the application**:
+1. Clone this repository in Google Colab.
+   ```bash
+   git clone https://github.com/DhivinShaji/Advanced-De-identification-of-Clinical-Texts-using-Large-Language-Models.git
+   ```
+   
+2. Navigate to the project directory.
 
     ```bash
-    python app.py
+    cd .\Advanced-De-identification-of-Clinical-Texts-using-Large-Language-Models
     ```
+    
+2. Open the `Deidentification_BioBert.ipynb` notebook in Google Colab.
 
-4. **Copy the provided URL** (e.g., http://127.0.0.1:5000) and paste it into your web browser.
+3. Ensure that the Colab runtime is set to Python 3.7.
 
-5. **The website will load** and can be used to de-identify documents.
+4. Execute the notebook cells to install dependencies and run the de-identification pipeline.
+
+5. Copy the provided URL and paste it into your web browser.
+
+6. The website will load and can be used to de-identify documents.
 
 
 
-
-
-NOTE: The only folders/files changed/added to the older MASK version are 
+### NOTE: 
+The only folders/files changed/added to the older MASK version are: 
 1. "dataset and website"- where the dataset can be placed and website is built and run on flask servers.
-2. "ner_plugins"- "NER_ClinicalBERT.py" file is added
-3. "Models"- Once the model is trained, the NER_ClinicalBERT is saved in the Models file
+2. "ner_plugins"- "NER_BioBERT.py" file is added
+3. "Models"- Once the model is trained, the NER_BioBERT is saved in the Models file
 4. In the root folder 4 files were added, "extractcounts.py"(to analyse the entity distribution in the dataset), "name extraction.py"(extract all the names, locations and professions from the dataset to create base dictionaries), requirements.txt (to save all the required packages with their respective versions compatible with Python 3.7.9) and model_performance.py (to create heatmap on the entity level performance of multiple models)
